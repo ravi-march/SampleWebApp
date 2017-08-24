@@ -16,12 +16,12 @@
         </javac> 
     </target>
     <target name="checkstyle">
-        <checkstyle config="sun_checks.xml">
+        <checkstyle config="sun_checks.xml" failOnViolation="false">
             <fileset dir="src/example" includes="**/*.java"/>
             <formatter type="xml" toFile="checkstyle_errors.xml"/>
         </checkstyle>
     </target>
-    <target name="junit">
+    <target name="junit" depends="compile">
         <junit printsummary="yes" haltonfailure="yes">
           <classpath>
             <pathelement location="build/classes"/>
@@ -29,7 +29,7 @@
             <pathelement path="WebContent/WEB-INF/lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
           </classpath>
           <test name="junit.TestCalculator" haltonfailure="no" outfile="TestCalculator_JUnitresult">
-            <formatter type="plain"/>
+            <formatter type="xml"/>
           </test>
         </junit>
     </target>
